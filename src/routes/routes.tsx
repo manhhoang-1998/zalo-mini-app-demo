@@ -1,6 +1,13 @@
+import {
+  Flight,
+  FlightDetail,
+  FlightSearch,
+  HomePage,
+  OrderDetail,
+  Orders,
+} from "@pages";
 import { RoutesType } from "@types";
 import React from "react";
-import { HomePage } from "@pages";
 
 export const APP_ROUTES: RoutesType[] = [
   {
@@ -8,8 +15,26 @@ export const APP_ROUTES: RoutesType[] = [
     element: <HomePage />,
   },
   {
-    path: "/tesst",
-    element: <>tesst</>,
+    path: "/flight/search",
+    element: <FlightSearch />,
+  },
+  {
+    path: "/flight",
+    element: <Flight />,
+  },
+  {
+    path: "/flight/:routeCode",
+    element: <FlightDetail />,
+  },
+
+  {
+    path: "/orders",
+    element: <Orders />,
+  },
+
+  {
+    path: "/order/:orderCode",
+    element: <OrderDetail />,
   },
   // Wrong nav
   {

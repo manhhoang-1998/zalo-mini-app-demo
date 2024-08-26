@@ -1,9 +1,10 @@
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
 // https://vitejs.dev/config/
-export default () => {
+export default ({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
   return defineConfig({
     root: "./src",
     base: "",
@@ -18,7 +19,14 @@ export default () => {
         "@types/*": path.resolve(process.cwd(), "src/types/*"),
         "@routes": path.resolve(process.cwd(), "src/routes"),
         "@routes/*": path.resolve(process.cwd(), "src/routes/*"),
+        "@utils": path.resolve(process.cwd(), "src/utils"),
+        "@utils/*": path.resolve(process.cwd(), "src/utils/*"),
+        "@apis": path.resolve(process.cwd(), "src/apis"),
+        "@apis/*": path.resolve(process.cwd(), "src/apis/*"),
       },
+    },
+    define: {
+      "process.env": JSON.stringify(env),
     },
   });
 };

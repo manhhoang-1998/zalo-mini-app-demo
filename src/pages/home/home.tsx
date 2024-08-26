@@ -1,29 +1,38 @@
 import React from "react";
-import { Input, Page } from "zmp-ui";
+import { Page } from "zmp-ui";
+import { NAVBARS, SERVICES } from "./simulators/home.simulator";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage: React.FunctionComponent = () => {
+  const navigate = useNavigate();
+
+  const onClickService = (item) => {
+    navigate(item.path);
+  };
+
+  const onClickNavbar = (item) => {
+    navigate(item.path);
+  };
+
   return (
     <Page className="page">
       {/* Icon Menu */}
       <div className="grid grid-cols-4 gap-4 my-4">
-        {[
-          { icon: "✈️", label: "Chuyến bay" },
-          { icon: "🏨", label: "Khách sạn" },
-          { icon: "🎉", label: "Xperience" },
-          { icon: "🚐", label: "Đưa đón sân bay" },
-          { icon: "🚗", label: "Car Rental" },
-          { icon: "🏖️", label: "Holiday Stays" },
-          { icon: "🎁", label: "Gift Voucher" },
-          { icon: "🅿️", label: "Loyalty Points" },
-          { icon: "🔔", label: "Price Alert" },
-          { icon: "🛩️", label: "Flight Status" },
-          { icon: "🧳", label: "Tours" },
-          { icon: "🎡", label: "Attractions" },
-          { icon: "🧾", label: "Combo tiết kiệm" },
-          { icon: "🚌", label: "Vé xe khách" },
-        ].map((item) => (
-          <div key={item.label} className="flex flex-col items-center">
-            <div className="text-4xl">{item.icon}</div>
+        {SERVICES.map((item) => (
+          <div
+            onClick={() => onClickService(item)}
+            key={item.label}
+            className="flex flex-col items-center"
+          >
+            <div
+              className={`${
+                item?.isActive
+                  ? "text-4xl"
+                  : "text-4xl text-gray-400 filter grayscale opacity-50"
+              }`}
+            >
+              {item.icon}
+            </div>
             <div className="text-center text-sm mt-2">{item.label}</div>
           </div>
         ))}
@@ -37,22 +46,16 @@ export const HomePage: React.FunctionComponent = () => {
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 bg-white flex justify-around p-2 shadow-md">
-        <div className="text-center">
-          <div className="text-blue-500 text-xl">🏠</div>
-          <div className="text-xs">Trang chủ</div>
-        </div>
-        <div className="text-center">
-          <div className="text-xl">🔖</div>
-          <div className="text-xs">Đã Lưu</div>
-        </div>
-        <div className="text-center">
-          <div className="text-xl">📅</div>
-          <div className="text-xs">Đặt chỗ của tôi</div>
-        </div>
-        <div className="text-center">
-          <div className="text-xl">👤</div>
-          <div className="text-xs">Tài khoản</div>
-        </div>
+        {NAVBARS.map((item, index) => (
+          <div
+            onClick={() => onClickNavbar(item)}
+            key={index}
+            className="text-center"
+          >
+            <div className="text-xl">{item.icon}</div>
+            <div className="text-xs">{item.label}</div>
+          </div>
+        ))}
       </div>
     </Page>
   );
