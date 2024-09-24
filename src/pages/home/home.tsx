@@ -1,7 +1,8 @@
 import React from "react";
-import { Page } from "zmp-ui";
+import { Button, Page } from "zmp-ui";
 import { NAVBARS, SERVICES } from "./simulators/home.simulator";
 import { useNavigate } from "react-router-dom";
+import { authorize, getAccessToken, getUserID, login } from "zmp-sdk";
 
 export const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -12,6 +13,16 @@ export const HomePage: React.FunctionComponent = () => {
 
   const onClickNavbar = (item) => {
     navigate(item.path);
+  };
+
+  const authorizeUser = async () => {
+    try {
+      const userID = await login();
+      console.log("userID", userID);
+    } catch (error) {
+      // xử lý khi gọi api thất bại
+      console.log(error);
+    }
   };
 
   return (
@@ -37,6 +48,7 @@ export const HomePage: React.FunctionComponent = () => {
           </div>
         ))}
       </div>
+      <Button onClick={() => authorizeUser()}>Auth</Button>
 
       {/* Promo Banner */}
       <div className="bg-white p-4 rounded-lg shadow-md">

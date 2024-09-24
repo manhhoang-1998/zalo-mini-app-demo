@@ -26,8 +26,3 @@ export const createAxiosInstance = (baseURL: string) => {
 
   return axiosInstance;
 };
-
-// Create instant for each api url
-export const bitrixInstance = createAxiosInstance(
-  process.env.REACT_APP_BITRIX_URL as string
-);

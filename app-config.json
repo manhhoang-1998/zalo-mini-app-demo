@@ -1,15 +1,15 @@
 {
   "app": {
-    "title": "HPL MINI APP",
-    "headerTitle": "HPL MINI APP",
-    "headerColor": "#1843EF",
-    "textColor": "white",
-    "statusBarColor": "#1843EF",
-    "leftButton": "back",
-    "statusBar": "normal",
-    "actionBarHidden": false,
+    "title": "Travel Easy",
+    "headerColor": "",
+    "textColor": "black",
+    "statusBarColor": "#ffffff",
+    "leftButton": "none",
+    "statusBar": "transparent",
+    "selfControlLoading": false,
     "hideAndroidBottomNavigationBar": false,
-    "hideIOSSafeAreaBottom": false
+    "hideIOSSafeAreaBottom": false,
+    "actionBarHidden": true
   },
   "debug": false,
   "listCSS": [],
